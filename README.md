@@ -50,9 +50,9 @@ The `Boquila` dependency on it's own is very boring. It doesn't really do anythi
 
 To learn how to use `Boquila`, check out the documentation for each of the options you have installed. 
 
-* [Plugins](Boquila/Core/Plugins.md)
-* [`Firebase` documentation](FirebaseBoquilaAdapter/README.md)
-* [`Testing` documentation](BoquilaTesting/README.md)
+* [Plugins](boquila/Plugins.md)
+* [`Firebase` documentation](firebase-boquila-adapter/README.md)
+* [`Testing` documentation](boquila-testing/README.md)
 
 ## Example app
 

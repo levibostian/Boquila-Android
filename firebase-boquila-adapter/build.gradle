@@ -31,7 +31,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation project(path: ':Boquila')
+    implementation project(path: ':boquila')
 
     // Not using the ktx versions to keep the dependencies as slim as possible
     implementation 'com.google.firebase:firebase-config:19.1.4'

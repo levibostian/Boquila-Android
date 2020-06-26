@@ -8,7 +8,7 @@ This Testing module is designed to be flexible in order to be used in any of you
 
 ```
 implementation 'com.levibostian.boquila:boquila:version-goes-here'
-implementation 'com.levibostian.boquilatesting:boquila:version-goes-here'
+implementation 'com.levibostian.boquila:boquila-testing:version-goes-here'
 ```
 
 Replace `version-here` with: [![Download](https://api.bintray.com/packages/levibostian/Boquila/com.levibostian.boquila/images/download.svg)](https://bintray.com/levibostian/Boquila/com.levibostian.boquila/_latestVersion) which is the latest version at this time.
