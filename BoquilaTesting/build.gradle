@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+// put these values towards the top of the file
+ext {
+    artifact = 'boquila-testing' // the X in `implementation "com.foo:X:0.1.0"`
+}
 
 android {
     compileSdkVersion 29
@@ -9,7 +13,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName codeVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -26,7 +30,11 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation project(path: ':Boquila')
-    testImplementation 'junit:junit:4.13'
 
+    implementation project(path: ':Boquila')
+
+    testImplementation 'junit:junit:4.13'
 }
+
+// put this at the bottom of the file.
+apply from: rootProject.file('gradle/publish.gradle')
