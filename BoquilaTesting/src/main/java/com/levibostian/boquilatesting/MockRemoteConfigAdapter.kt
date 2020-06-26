@@ -4,18 +4,22 @@ import com.levibostian.boquila.BaseRemoteConfigAdapter
 import com.levibostian.boquila.RemoteConfigAdapter
 import com.levibostian.boquila.plugins.RemoteConfigAdapterPlugin
 
-open class MockRemoteConfigAdapter(plugins: List<RemoteConfigAdapterPlugin>): BaseRemoteConfigAdapter(plugins) {
+open class MockRemoteConfigAdapter(plugins: List<RemoteConfigAdapterPlugin> = listOf()): BaseRemoteConfigAdapter(plugins) {
 
     /**
     Stores the values you want to override in the mock.
      */
-    open var valueOverrides: MutableMap<String, String> = mutableMapOf()
+    open var valueOverrides: Map<String, String> = mapOf()
 
     /**
     Attempts to transform the value you pass into something else usable
      */
     open fun setValue(id: String, value: String) {
-        this.valueOverrides[id] = value
+        val oldValueOverrides = this.valueOverrides.toMutableMap()
+
+        oldValueOverrides[id] = value
+
+        this.valueOverrides = oldValueOverrides
     }
 
     open fun <T> setValue(id: String, value: T) {
@@ -33,9 +37,15 @@ open class MockRemoteConfigAdapter(plugins: List<RemoteConfigAdapterPlugin>): Ba
 
     open override fun getStringValue(id: String): String? = valueOverrides[id]
 
+    /**
+     * By default, does not do anything. Override this method in your own subclass to do something.
+     */
     open override fun activate() {
     }
 
+    /**
+     * By default, does not do anything. Override this method in your own subclass to do something.
+     */
     open override fun refresh(onComplete: (Result<Unit>) -> Unit) {
         onComplete(Result.success(Unit))
     }

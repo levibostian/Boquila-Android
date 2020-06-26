@@ -29,8 +29,12 @@ dependencies {
 
     implementation project(path: ':Boquila')
 
-    implementation 'com.google.firebase:firebase-config-ktx:19.1.4'
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.3' // required for remote config
+    // Not using the ktx versions to keep the dependencies as slim as possible
+    implementation 'com.google.firebase:firebase-config:19.1.4'
+    implementation 'com.google.firebase:firebase-analytics:17.4.3' // required for remote config
 
     testImplementation 'junit:junit:4.13'
+
+    testImplementation 'com.google.firebase:firebase-config-ktx:19.1.4'
+    testImplementation 'com.google.firebase:firebase-analytics-ktx:17.4.3' // required for remote config
 }
