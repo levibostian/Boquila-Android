@@ -1,0 +1,5 @@
+include ':BoquilaTesting'
+include ':FirebaseBoquilaAdapter'
+include ':Boquila'
+include ':app'
+rootProject.name = "BoquilaExample"
