@@ -22,7 +22,7 @@ open class MockRemoteConfigAdapter(plugins: List<RemoteConfigAdapterPlugin> = li
         this.valueOverrides = oldValueOverrides
     }
 
-    open fun <T> setValue(id: String, value: T) {
+    open fun <T: Any> setValue(id: String, value: T) {
         var transformedValue: String? = null
         this.plugins.forEach { plugin  ->
             if (transformedValue == null) {

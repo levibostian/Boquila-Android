@@ -6,7 +6,7 @@ abstract class BaseRemoteConfigAdapter(protected val plugins: List<RemoteConfigA
 
     abstract fun getStringValue(id: String): String?
 
-    override fun <T: Any> getValue(id: String, clazz: Class<T>): T? {
+    override fun getValue(id: String): String? {
         var stringValue = this.getStringValue(id) ?: return null
         if (stringValue.isBlank()) return null // firebase returns empty values when a remote config value does not exist.
 
@@ -14,6 +14,14 @@ abstract class BaseRemoteConfigAdapter(protected val plugins: List<RemoteConfigA
         this.plugins.forEach { plugin  ->
             stringValue = plugin.manipulateStringValue(stringValue)
         }
+
+        return stringValue
+    }
+
+    override fun getValue(id: String, defaultValue: String): String = this.getValue(id) ?: defaultValue
+
+    override fun <T: Any> getValue(id: String, clazz: Class<T>): T? {
+        val stringValue = this.getValue(id) ?: return null
 
         // Transform the string value into something else. Allow the plugins to do this for us.
         var transformedValue: T? = null
@@ -27,13 +35,7 @@ abstract class BaseRemoteConfigAdapter(protected val plugins: List<RemoteConfigA
     }
 
     override fun <T : Any> getValues(id: String, clazz: Class<T>): List<T>? {
-        var stringValue = this.getStringValue(id) ?: return null
-        if (stringValue.isBlank()) return null // firebase returns empty values when a remote config value does not exist.
-
-        // Allow plugins to transform the input string.
-        this.plugins.forEach { plugin  ->
-            stringValue = plugin.manipulateStringValue(stringValue)
-        }
+        val stringValue = this.getValue(id) ?: return null
 
         // Transform the string value into something else. Allow the plugins to do this for us.
         var transformedValue: List<T>? = null
