@@ -1,4 +1,4 @@
-[![Download](https://api.bintray.com/packages/levibostian/Boquila-Android/com.levibostian.boquila/images/download.svg)](https://bintray.com/levibostian/Boquila-Android/com.levibostian.boquila/_latestVersion)
+[![Download](https://api.bintray.com/packages/levibostian/Boquila/com.levibostian.boquila/images/download.svg)](https://bintray.com/levibostian/Boquila/com.levibostian.boquila/_latestVersion)
 [![Build Status](https://travis-ci.com/levibostian/Boquila-Android.svg?branch=alpha)](https://travis-ci.com/levibostian/Boquila-Android)
 [![GitHub license](https://img.shields.io/github/license/levibostian/Boquila-Android.svg)](https://github.com/levibostian/Boquila-Android/blob/master/LICENSE)
 
