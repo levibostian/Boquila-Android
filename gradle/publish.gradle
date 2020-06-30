@@ -1,0 +1,75 @@
+/**
+ * This file is meant to be included in each of the modules you would like to deploy.
+ *
+  ```
+  // put this at the bottom of the file.
+  apply from: rootProject.file('gradle/publish.gradle')
+  ```
+ *
+ * You also need to make sure and define variables in your module's build.gradle file that this file reads.
+ ```
+ // put these values towards the top of the file
+ ext {
+   artifact = 'name-of-artifact' // the X in `implementation "com.foo:X:0.1.0"`
+ }
+ ```
+ */
+
+// Maven install
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = packageName
+version = codeVersion
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId packageName
+            artifactId artifact
+
+            name projectName
+            description libraryDescription
+            url siteUrl
+
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+// Bintray publish
+apply plugin: 'com.jfrog.bintray'
+
+bintray {
+    user = System.getenv("BINTRAY_USERNAME")
+    key = System.getenv("BINTRAY_KEY")
+
+    configurations = ['archives']
+    pkg {
+        repo = projectName
+        name = packageName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        override = true // Overwrite published versions already published.
+        publicDownloadNumbers = false
+        version {
+            desc = libraryDescription
+        }
+    }
+}
