@@ -1,0 +1,46 @@
+language: android
+jdk:
+  - oraclejdk8
+
+# Installs the newest platform tools instead of the outdated v23 travis has by default
+android:
+  components:
+    # Below 3 lines are to download the newer android tools. Tools is listed twice on purpose. https://docs.travis-ci.com/user/languages/android/#installing-a-newer-sdk-platform-tools-revision
+    - tools
+    - platform-tools
+    - tools
+    # Other components needed for the build.
+    - build-tools-29.0.2
+    - android-29
+  licenses:
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+env:
+  global:
+    - FOO=bar
+    # BINTRAY_USERNAME=username
+    # BINTRAY_KEY=api-key
+
+jobs:
+  include:
+    - stage: tests
+      script: 
+        - ./gradlew testDebugUnitTest # runs unit tests on *all* modules 
+    # - stage: deploy
+    #   script: 
+    #     - ./gradlew bintrayUpload # uploads all modules 
+
+stages:
+  - name: tests # Run tests on every commit to help keep tests passing as long as possible.
+    if: type IN (push, pull_request) # Testing on pull requests assert that after merge, the branch wont be broken.
+  # - name: deploy 
+  #   if: type IN (push) AND branch IN (master, beta, alpha)

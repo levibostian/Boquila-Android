@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+// put these values towards the top of the file
+ext {
+    artifact = 'moshi-boquila-plugin' // the X in `implementation "com.foo:X:0.1.0"`
+}
 
 android {
     compileSdkVersion 29
@@ -33,3 +37,6 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     testImplementation "com.google.truth:truth:1.0.1"
 }
+
+// put this at the bottom of the file.
+apply from: rootProject.file('gradle/publish.gradle')
