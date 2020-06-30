@@ -25,7 +25,7 @@ class Examples {
         val optionalStringValue: String? = remoteConfigAdapter.getValue("optional_string_value")
         val nonoptionalStringValue: String? = remoteConfigAdapter.getValue("optional_string_value", defaultValue = "Default value")
 
-        val nonStringValue: NonStringValue? = remoteConfigAdapter.getValue("non_string_value")
+        val nonStringValue: NonStringValue? = remoteConfigAdapter.getValue("non_string_value", NonStringValue::class.java)
 
         // One of the suggested methods to refresh remote config values is to activate and then refresh *in that order* when your app starts.
         // Learn more: https://firebase.google.com/docs/remote-config/loading

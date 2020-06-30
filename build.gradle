@@ -3,14 +3,17 @@ buildscript {
     ext.kotlin_version = "1.3.72"
 
     ext {
-        // Common values amongst all modules. Mostly info about the bintry repo lives here.
+        // Variables for project: https://github.com/levibostian/Android-JCenter
         projectName = 'Boquila' // Bintray Repo name. Where all *packages* live.
         packageName = 'com.levibostian.boquila' // Bintray package name. Where all *artifacts* will live.
-        codeVersion = project.property("version")
         libraryDescription = 'Small, consistent, flexible way to work with remote config.'
         siteUrl = 'https://github.com/levibostian/Boquila-Android'
         gitUrl = 'https://github.com/levibostian/Boquila-Android.git'
         allLicenses = ["MIT"]
+
+        // -----------------
+
+        codeVersion = project.property("version")
     }
 
     repositories {
