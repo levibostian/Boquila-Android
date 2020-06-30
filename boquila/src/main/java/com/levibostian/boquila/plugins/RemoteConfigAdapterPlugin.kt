@@ -21,14 +21,16 @@ abstract class RemoteConfigAdapterPlugin {
 
     It's a good idea to (1) check `value` is a format that your plugin knows how to handle. For example, if you're building a plugin that transforms strings in JSON format into an object, run a check on the `value` to see if it's valid json and if not, return `nil`. This is a good idea because **the first plugin that returns a non-nil value is the value returned from the adapter's `getValue()` function**.
      */
-    open fun <T> transformStringValue(value: String) : T? = null
+    open fun <T: Any> transformStringValue(value: String, clazz: Class<T>): T? = null
+
+    open fun <T: Any> transformStringValues(value: String, clazz: Class<T>): List<T>? = null
 
     /**
     The opposite of `transformStringValue` where your plugin will attempt to take a value that could be returned from `transformStringValue` and convert it back into a string.
 
     If your plugin implements `transformStringValue`, it's a good idea to also implement this function.
      */
-    open fun <T> transformToStringValue(value: T) : String? = null
+    open fun <T: Any> transformToStringValue(value: T) : String? = null
 
     /**
     Before the activation for the adapter is started, this is called.

@@ -1,3 +1,4 @@
+include ':moshi-boquila-plugin'
 include ':boquila-testing'
 include ':firebase-boquila-adapter'
 include ':boquila'

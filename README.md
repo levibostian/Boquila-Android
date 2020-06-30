@@ -41,10 +41,11 @@ Replace `version-here` with: [![Download](https://api.bintray.com/packages/levib
 
 The `Boquila` dependency on it's own is very boring. It doesn't really do anything at all. You want to add more dependencies to your project depending on what you want to do. Here are all of your options:
 
-| Title       | Description                                                                                |
-------------------------------------------------------------------------------------------------------------
-| `Firebase` | Use `Boquila` with [Firebase Remote Config](https://firebase.google.com/docs/remote-config) |
-| `Testing`  | Set of utilities to use remote config in your unit, integration, and UI tests.              |
+| Title       | Description                                                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| `Firebase` | Use `Boquila` with [Firebase Remote Config](https://firebase.google.com/docs/remote-config)            |
+| `Testing`  | Set of utilities to use remote config in your unit, integration, and UI tests.                         |
+| `Moshi`    | Use JSON as your remote config value and deserialize it with [Moshi](https://github.com/square/moshi). |
 
 # Getting started 
 
@@ -53,6 +54,7 @@ To learn how to use `Boquila`, check out the documentation for each of the optio
 * [Plugins](boquila/Plugins.md)
 * [`Firebase` documentation](firebase-boquila-adapter/README.md)
 * [`Testing` documentation](boquila-testing/README.md)
+* [`Moshi` documentation](moshi-boquila-plugin/README.md)
 
 ## Example app
 
